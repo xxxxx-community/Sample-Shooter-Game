@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://ty51yresb5n3"]
+
+[ext_resource type="Script" uid="uid://vffwfkrlvvky" path="res://scenes/bullets/bullet/bullet.gd" id="1_lj0ko"]
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_lj0ko")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="LifeTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[connection signal="deleted" from="." to="." method="_on_deleted"]
+[connection signal="life_time_out" from="." to="." method="_on_life_time_out"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="timeout" from="Timers/LifeTimer" to="." method="_on_life_timer_timeout"]

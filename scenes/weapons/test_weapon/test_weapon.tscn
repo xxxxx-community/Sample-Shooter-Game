@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkq156dr3akdd"]
+
+[ext_resource type="PackedScene" uid="uid://n4ysc1m5koq8" path="res://scenes/weapons/weapon/weapon.tscn" id="1_lq8ts"]
+[ext_resource type="PackedScene" uid="uid://lyn2xomhrco5" path="res://scenes/bullets/test_bullet/test_bullet.tscn" id="2_wxur0"]
+
+[node name="TestWeapon" instance=ExtResource("1_lq8ts")]
+rotation = -3.14752
+weapon_name = "Test Weapon"
+weapon_bullet = ExtResource("2_wxur0")
+spread_angle = 5.0
+shoot_delay = 0.2

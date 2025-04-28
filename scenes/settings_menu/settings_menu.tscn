@@ -1,0 +1,133 @@
+[gd_scene load_steps=5 format=3 uid="uid://csgd47f11y0g7"]
+
+[ext_resource type="Script" uid="uid://dloc53j42pwrn" path="res://scenes/settings_menu/settings_menu.gd" id="1_j78aw"]
+[ext_resource type="Texture2D" uid="uid://b0oub8ynj40nd" path="res://assets/1337-gigachad.png" id="2_p28av"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_swo63"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_j78aw"]
+font_size = 28
+shadow_offset = Vector2(0, 1)
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j78aw")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_right = 124.0
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_swo63")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.5
+offset_top = 112.0
+offset_right = 59.5
+offset_bottom = 159.0
+grow_horizontal = 2
+theme_override_constants/separation = 13
+alignment = 1
+
+[node name="MuteBox" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="MuteLabel" type="Label" parent="Options/MuteBox"]
+layout_mode = 2
+text = "Mute"
+label_settings = SubResource("LabelSettings_j78aw")
+
+[node name="MuteCheckButton" type="CheckButton" parent="Options/MuteBox"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 28
+alignment = 2
+
+[node name="VomuleBox" type="VBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/VomuleBox"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="Options/VomuleBox/HBoxContainer"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_j78aw")
+
+[node name="VolumeValueLabel" type="Label" parent="Options/VomuleBox/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_j78aw")
+
+[node name="VolumeScrollBar" type="HScrollBar" parent="Options/VomuleBox"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 50.0
+rounded = true
+
+[node name="DifficultyBox" type="VBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/DifficultyBox"]
+layout_mode = 2
+
+[node name="DifficultyLabel" type="Label" parent="Options/DifficultyBox/HBoxContainer"]
+layout_mode = 2
+text = "Difficulty"
+label_settings = SubResource("LabelSettings_j78aw")
+
+[node name="DifficultyValueLabel" type="Label" parent="Options/DifficultyBox/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_j78aw")
+
+[node name="TextureRect" type="TextureRect" parent="Options/DifficultyBox/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("2_p28av")
+expand_mode = 1
+flip_h = true
+
+[node name="DifficultyScrollBar" type="HScrollBar" parent="Options/DifficultyBox"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 5.0
+step = 1.0
+value = 1.0
+rounded = true
+
+[node name="BackToMenuButton" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Back to menu"
+
+[connection signal="value_changed" from="Options/VomuleBox/VolumeScrollBar" to="." method="_on_volume_scroll_bar_value_changed"]
+[connection signal="value_changed" from="Options/DifficultyBox/DifficultyScrollBar" to="." method="_on_difficulty_scroll_bar_value_changed"]
+[connection signal="pressed" from="Options/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

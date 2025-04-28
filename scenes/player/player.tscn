@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb2exhf3j0t0i"]
+
+[ext_resource type="Script" uid="uid://dxxgrkfer0jgv" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="PackedScene" uid="uid://dkq156dr3akdd" path="res://scenes/weapons/test_weapon/test_weapon.tscn" id="2_dovo2"]
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("weapons_node_container")]
+script = ExtResource("1_8afob")
+weapons_node_container = NodePath("WeaponsContainer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="WeaponsContainer" type="Node2D" parent="."]
+
+[node name="TestWeapon" parent="WeaponsContainer" instance=ExtResource("2_dovo2")]

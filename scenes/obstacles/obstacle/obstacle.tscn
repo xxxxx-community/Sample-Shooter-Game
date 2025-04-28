@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp8mar3vmraqj"]
+
+[ext_resource type="Script" uid="uid://hq1iqsqsqgjp" path="res://scenes/obstacles/obstacle/obstacle.gd" id="1_887um"]
+
+[node name="Obstacle" type="CharacterBody2D" groups=["obstacle"]]
+collision_mask = 6
+script = ExtResource("1_887um")
+show_health_label = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -61.0
+offset_right = 20.0
+offset_bottom = -38.0
+
+[connection signal="destroyed" from="." to="." method="_on_destroyed"]
+[connection signal="health_changed" from="." to="." method="_on_health_changed"]

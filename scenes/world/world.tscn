@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=3 uid="uid://p4om37dltjcv"]
+
+[ext_resource type="Script" uid="uid://caggyoi1efkb4" path="res://scenes/world/world.gd" id="1_6m72w"]
+[ext_resource type="PackedScene" uid="uid://cbyxwtjoly8ei" path="res://scenes/game_over_area/game_over_area.tscn" id="1_dphjl"]
+[ext_resource type="PackedScene" uid="uid://cpdfwcdf3id5i" path="res://scenes/obstacle_spawner/obstacle_spawner.tscn" id="2_1fp7r"]
+[ext_resource type="PackedScene" uid="uid://bb2exhf3j0t0i" path="res://scenes/player/player.tscn" id="2_v5dby"]
+[ext_resource type="PackedScene" uid="uid://c81gxlpj30ih3" path="res://scenes/obstacles/test_obstacle/test_obstacle.tscn" id="3_6m72w"]
+
+[sub_resource type="Animation" id="Animation_6m72w"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObstacleSpawner:obstacle_spawn_delay")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1fp7r"]
+resource_name = "obstacle_spawn_rate"
+length = 100.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObstacleSpawner:obstacle_spawn_delay")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4, -0.25, 0, 0.25, 0, 0.6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 100)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6m72w"]
+_data = {
+&"RESET": SubResource("Animation_6m72w"),
+&"obstacle_spawn_rate": SubResource("Animation_1fp7r")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5dby"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_6m72w"]
+font_size = 64
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("bullets_node_container")]
+script = ExtResource("1_6m72w")
+bullets_node_container = NodePath("BulletsContainer")
+
+[node name="Player" parent="." instance=ExtResource("2_v5dby")]
+position = Vector2(0, 452)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GameOverArea" parent="." instance=ExtResource("1_dphjl")]
+position = Vector2(0, 435)
+scale = Vector2(1.00283, 14.8287)
+
+[node name="ObstacleSpawner" parent="." node_paths=PackedStringArray("obstacles_node_container", "markers_node_container") instance=ExtResource("2_1fp7r")]
+obstacles = Array[PackedScene]([ExtResource("3_6m72w")])
+obstacles_node_container = NodePath("../Obstacles")
+markers_node_container = NodePath("../ObstaclesSpawnMarkers")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6m72w")
+}
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="BulletsContainer" type="Node2D" parent="."]
+
+[node name="ObstaclesSpawnMarkers" type="Node2D" parent="."]
+
+[node name="Marker1" type="Marker2D" parent="ObstaclesSpawnMarkers"]
+position = Vector2(-162, -451)
+rotation = 3.14159
+scale = Vector2(29824.1, -394769)
+
+[node name="Marker2" type="Marker2D" parent="ObstaclesSpawnMarkers"]
+position = Vector2(166, -451)
+rotation = 3.14159
+scale = Vector2(29824.1, -394769)
+
+[node name="Marker3" type="Marker2D" parent="ObstaclesSpawnMarkers"]
+position = Vector2(1, -451)
+rotation = 3.14159
+scale = Vector2(29824.1, -394769)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PausedBox" type="VBoxContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -90.5
+offset_right = 96.0
+offset_bottom = 90.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PausedLabel" type="Label" parent="Control/PausedBox"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Paused"
+label_settings = SubResource("LabelSettings_v5dby")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Control/PausedBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="BackToMenuButton" type="Button" parent="Control/PausedBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back to menu"
+
+[node name="GameOverBox" type="VBoxContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -44.0
+offset_right = 187.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="Control/GameOverBox"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_6m72w")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[connection signal="pressed" from="Control/PausedBox/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/PausedBox/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

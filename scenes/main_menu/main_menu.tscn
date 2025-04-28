@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl70hy2gvuyrh"]
+
+[ext_resource type="Script" uid="uid://cdc1d3otrc4su" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1b6gl"]
+font_size = 108
+
+[sub_resource type="LabelSettings" id="LabelSettings_fsom3"]
+font_size = 24
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsom3")
+
+[node name="TitlesBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_right = 324.0
+offset_bottom = 337.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="GameNameLabel" type="Label" parent="TitlesBox"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Sample Shooter"
+label_settings = SubResource("LabelSettings_1b6gl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VersionLabel" type="Label" parent="TitlesBox"]
+layout_mode = 2
+text = "v1.0.0 demo"
+label_settings = SubResource("LabelSettings_fsom3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -453.0
+offset_right = 97.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 23
+alignment = 2
+
+[node name="PlayButton" type="Button" parent="ButtonsBox"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="ButtonsBox"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Settings
+"
+
+[connection signal="pressed" from="ButtonsBox/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ButtonsBox/SettingsButton" to="." method="_on_settings_button_pressed"]

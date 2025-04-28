@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://c81gxlpj30ih3"]
+
+[ext_resource type="PackedScene" uid="uid://dp8mar3vmraqj" path="res://scenes/obstacles/obstacle/obstacle.tscn" id="1_5lant"]
+[ext_resource type="Texture2D" uid="uid://c3xp7wddef82l" path="res://assets/photo_2025-04-27_22-37-06.jpg" id="2_jgnes"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5lant"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jgnes")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_jgnes"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.00872665, 0.00872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_f1rtm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_63pje"]
+resource_name = "hit"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.366667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0698132, -0.0698132, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 0.812255, 1, 0.812255),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1), Vector2(1, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_63pje"]
+_data = {
+&"RESET": SubResource("Animation_f1rtm"),
+&"hit": SubResource("Animation_63pje"),
+&"idle": SubResource("Animation_jgnes")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgnes"]
+radius = 49.7663
+
+[node name="TestObstacle" instance=ExtResource("1_5lant")]
+speed = 100.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(-1.98254, -4.70667)
+sprite_frames = SubResource("SpriteFrames_5lant")
+offset = Vector2(1.06307, -112.74)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_63pje")
+}
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-2, -65)
+scale = Vector2(0.905119, 0.905119)
+shape = SubResource("CircleShape2D_jgnes")
+debug_color = Color(0.835294, 0.964706, 1, 0)
+
+[node name="HealthLabel" parent="." index="3"]
+offset_top = -70.0
+offset_bottom = -47.0

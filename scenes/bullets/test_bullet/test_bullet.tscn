@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://lyn2xomhrco5"]
+
+[ext_resource type="PackedScene" uid="uid://ty51yresb5n3" path="res://scenes/bullets/bullet/bullet.tscn" id="1_lnflf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhwbs"]
+radius = 3.0
+
+[node name="TestBullet" instance=ExtResource("1_lnflf")]
+collision_layer = 2
+damage = 1
+life_time = 1.0
+speed = 3000.0
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource("CircleShape2D_nhwbs")
+debug_color = Color(0.637843, 0.637843, 0.637843, 1)

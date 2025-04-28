@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://n4ysc1m5koq8"]
+
+[ext_resource type="Script" uid="uid://uym04jke5u4s" path="res://scenes/weapons/weapon/weapon.gd" id="1_g2w42"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_g2w42")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="Timers"]
+
+[connection signal="timeout" from="Timers/ShootTimer" to="." method="_on_shoot_timer_timeout"]
