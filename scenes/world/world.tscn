@@ -156,5 +156,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="PlayAgainButton" type="Button" parent="Control/GameOverBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play again
+"
+
+[node name="BackToMenuButton" type="Button" parent="Control/GameOverBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back to menu"
+
 [connection signal="pressed" from="Control/PausedBox/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/PausedBox/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="Control/GameOverBox/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="Control/GameOverBox/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

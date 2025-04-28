@@ -19,6 +19,7 @@ signal obstacle_spawned(obstacle: Obstacle)
 
 func _ready():
 	obstacle_spawn_timer.wait_time = obstacle_spawn_delay
+	obstacle_spawn_timer.start()
 	if markers_node_container:
 		markers.append_array(markers_node_container.get_children())
 	GlobalVars.game_over.connect(func (): obstacle_spawn_timer.paused = true)

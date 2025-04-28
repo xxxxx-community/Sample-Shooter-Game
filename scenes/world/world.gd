@@ -29,4 +29,12 @@ func _on_resume_button_pressed() -> void:
 
 
 func _on_back_to_menu_button_pressed() -> void:
+	GlobalVars.is_paused = false
+	GlobalVars.is_game_over = false
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn") 
+
+
+func _on_play_again_button_pressed() -> void:
+	GlobalVars.is_paused = false
+	GlobalVars.is_game_over = false
+	get_tree().reload_current_scene()
