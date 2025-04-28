@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://p4om37dltjcv"]
+[gd_scene load_steps=11 format=3 uid="uid://p4om37dltjcv"]
 
 [ext_resource type="Script" uid="uid://caggyoi1efkb4" path="res://scenes/world/world.gd" id="1_6m72w"]
 [ext_resource type="PackedScene" uid="uid://cbyxwtjoly8ei" path="res://scenes/game_over_area/game_over_area.tscn" id="1_dphjl"]
@@ -39,6 +39,9 @@ _data = {
 &"RESET": SubResource("Animation_6m72w"),
 &"obstacle_spawn_rate": SubResource("Animation_1fp7r")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_t5ptc"]
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_v5dby"]
 font_size = 48
@@ -94,6 +97,22 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.5
+offset_top = -394.0
+offset_right = 91.5
+offset_bottom = -349.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_t5ptc")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PausedBox" type="VBoxContainer" parent="Control"]
 unique_name_in_owner = true

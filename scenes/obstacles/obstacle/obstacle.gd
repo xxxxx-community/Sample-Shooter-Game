@@ -64,6 +64,7 @@ func _on_health_changed(_old_health: int, new_health: int) -> void:
 
 
 func _on_destroyed() -> void:
+	GlobalVars.score += 1
 	if animation_player.has_animation("destroy"):
 		animation_player.play("destroy")
 	else:

@@ -3,6 +3,7 @@ class_name World extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var game_over_box: VBoxContainer = %GameOverBox
 @onready var paused_box: VBoxContainer = %PausedBox
+@onready var score_label: Label = %ScoreLabel
 
 @export var bullets_node_container: Node2D
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 	GlobalVars.game_over.connect(func (): game_over_box.visible = true)
 	GlobalVars.paused.connect(func (): paused_box.visible = true)
 	GlobalVars.resume.connect(func (): paused_box.visible = false)
+	GlobalVars.score_changed.connect(func (value): score_label.text = str(value))
 
 
 func _process(_delta):

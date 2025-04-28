@@ -7,7 +7,6 @@ class_name ObstacleSpawner extends Node
 		if obstacle_spawn_timer:
 			obstacle_spawn_timer.wait_time = obstacle_spawn_delay
 @export var enabled: bool = true
-@export var obstacles: Array[PackedScene]
 @export var obstacles_node_container: Node2D
 @export var markers_node_container: Node2D
 @onready var obstacles_file_name_stack: Array[String] = []
@@ -42,7 +41,7 @@ func spawn_obstacle(obstacle_scene: PackedScene, marker: Marker2D) -> void:
 
 
 func _on_obstacle_spawn_timer_timeout() -> void:
-	var count: int = randi_range(1, 3)
+	var count: int = randi_range(1, clamp(round(GlobalVars.score + 1 / 5.0), 1, len(markers)))
 	markers.shuffle()
 	var markers_to_spawn_obstacle = markers.slice(0, count + 1)
 	while count > 0:

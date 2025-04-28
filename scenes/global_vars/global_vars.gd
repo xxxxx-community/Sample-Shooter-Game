@@ -4,8 +4,12 @@ signal game_over()
 signal paused()
 signal resume()
 signal mute_toggled()
+signal score_changed(value: int)
 
-var score: int = 0
+var score: int = 0:
+	set(value):
+		score = value
+		score_changed.emit(value)
 var obstacle_spawner: ObstacleSpawner
 var world: World
 var player: Player
