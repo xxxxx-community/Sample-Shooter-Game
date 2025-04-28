@@ -12,10 +12,11 @@ func _ready() -> void:
 	volume_value_label.text = str(GlobalVars.volume)
 	difficulty_value_label.text = str(GlobalVars.difficulty)
 
+
 func _on_volume_scroll_bar_value_changed(value: float) -> void:
 	GlobalVars.volume = int(value)
 	volume_value_label.text = str(GlobalVars.volume)
-	
+
 
 func _on_difficulty_scroll_bar_value_changed(value: float) -> void:
 	GlobalVars.difficulty = int(value)
