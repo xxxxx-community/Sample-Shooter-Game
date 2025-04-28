@@ -26,7 +26,7 @@ func _ready():
 	GlobalVars.paused.connect(func (): obstacle_spawn_timer.paused = true)
 	GlobalVars.resume.connect(func (): obstacle_spawn_timer.paused = false)
 	obstacles_file_name_stack.resize(100)
-	obstacles_file_name_stack.fill("res://scenes/obstacles/test_obstacle/test_obstacle.tscn")
+	obstacles_file_name_stack.fill("res://scenes/obstacles/obstacle_level_1/obstacle_level_1.tscn")
 
 
 func _enter_tree() -> void:

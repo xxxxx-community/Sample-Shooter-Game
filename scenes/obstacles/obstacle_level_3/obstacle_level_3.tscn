@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtjr54rk55lvc"]
+
+[ext_resource type="PackedScene" uid="uid://dp8mar3vmraqj" path="res://scenes/obstacles/obstacle/obstacle.tscn" id="1_i3hoj"]
+[ext_resource type="Shape2D" uid="uid://bjpomgq2ywdw" path="res://scenes/obstacles/obstacle/base_shape.tres" id="2_1qyrm"]
+
+[node name="ObstacleLevel3" instance=ExtResource("1_i3hoj")]
+max_health = 3
+health = 3
+speed = 200.0
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = ExtResource("2_1qyrm")
