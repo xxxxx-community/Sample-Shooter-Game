@@ -1,0 +1,7 @@
+*.import/
+.godot/
+godot-headers/
+export.cfg
+export_presets.cfg
+mono/
+.mono/
