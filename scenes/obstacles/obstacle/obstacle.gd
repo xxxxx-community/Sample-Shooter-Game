@@ -64,7 +64,10 @@ func _on_health_changed(_old_health: int, new_health: int) -> void:
 
 
 func _on_destroyed() -> void:
-	animation_player.play("destroy")
+	if animation_player.has_animation("destroy"):
+		animation_player.play("destroy")
+	else:
+		queue_free()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

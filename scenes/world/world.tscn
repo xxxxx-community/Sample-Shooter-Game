@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://p4om37dltjcv"]
+[gd_scene load_steps=10 format=3 uid="uid://p4om37dltjcv"]
 
 [ext_resource type="Script" uid="uid://caggyoi1efkb4" path="res://scenes/world/world.gd" id="1_6m72w"]
 [ext_resource type="PackedScene" uid="uid://cbyxwtjoly8ei" path="res://scenes/game_over_area/game_over_area.tscn" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://cpdfwcdf3id5i" path="res://scenes/obstacle_spawner/obstacle_spawner.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://bb2exhf3j0t0i" path="res://scenes/player/player.tscn" id="2_v5dby"]
-[ext_resource type="PackedScene" uid="uid://c81gxlpj30ih3" path="res://scenes/obstacles/test_obstacle/test_obstacle.tscn" id="3_6m72w"]
 
 [sub_resource type="Animation" id="Animation_6m72w"]
 length = 0.001
@@ -61,8 +60,7 @@ position = Vector2(0, 435)
 scale = Vector2(1.00283, 14.8287)
 
 [node name="ObstacleSpawner" parent="." node_paths=PackedStringArray("obstacles_node_container", "markers_node_container") instance=ExtResource("2_1fp7r")]
-obstacles = Array[PackedScene]([ExtResource("3_6m72w")])
-obstacles_node_container = NodePath("../Obstacles")
+obstacles_node_container = NodePath("../ObstaclesContainer")
 markers_node_container = NodePath("../ObstaclesSpawnMarkers")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -70,7 +68,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_6m72w")
 }
 
-[node name="Obstacles" type="Node2D" parent="."]
+[node name="ObstaclesContainer" type="Node2D" parent="."]
 
 [node name="BulletsContainer" type="Node2D" parent="."]
 
