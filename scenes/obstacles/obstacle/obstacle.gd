@@ -31,6 +31,9 @@ signal destroyed()
 func _ready():
 	health = clamp(health, 0, max_health)
 	move_direction = move_direction.normalized() if not move_direction.is_normalized() else move_direction
+	GlobalVars.paused.connect(func (): animation_player.pause())
+	GlobalVars.resume.connect(func (): animation_player.play())
+	GlobalVars.game_over.connect(func (): animation_player.stop())
 	animation_player.play("idle")
 
 
@@ -56,8 +59,17 @@ func take_damage_by_bullet(bullet: Bullet) -> void:
 
 
 func _on_health_changed(_old_health: int, new_health: int) -> void:
-	health_label.text = "%s/%s" % [new_health, max_health]
+	if health_label:
+		health_label.text = "%s/%s" % [new_health, max_health]
 
 
 func _on_destroyed() -> void:
-	pass
+	animation_player.play("destroy")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"hit":
+			animation_player.play("idle")
+		"destroy":
+			queue_free()
