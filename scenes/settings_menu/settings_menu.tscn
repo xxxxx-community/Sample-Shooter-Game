@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://csgd47f11y0g7"]
+[gd_scene load_steps=4 format=3 uid="uid://csgd47f11y0g7"]
 
 [ext_resource type="Script" uid="uid://dloc53j42pwrn" path="res://scenes/settings_menu/settings_menu.gd" id="1_j78aw"]
-[ext_resource type="Texture2D" uid="uid://b0oub8ynj40nd" path="res://assets/1337-gigachad.png" id="2_p28av"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_swo63"]
 font_size = 64
@@ -56,30 +55,55 @@ text = "Mute"
 label_settings = SubResource("LabelSettings_j78aw")
 
 [node name="MuteCheckButton" type="CheckButton" parent="Options/MuteBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 alignment = 2
 
-[node name="VomuleBox" type="VBoxContainer" parent="Options"]
+[node name="MusicVomuleBox" type="VBoxContainer" parent="Options"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Options/VomuleBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/MusicVomuleBox"]
 layout_mode = 2
 
-[node name="VolumeLabel" type="Label" parent="Options/VomuleBox/HBoxContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="Options/MusicVomuleBox/HBoxContainer"]
 layout_mode = 2
-text = "Volume"
+text = "Music"
 label_settings = SubResource("LabelSettings_j78aw")
 
-[node name="VolumeValueLabel" type="Label" parent="Options/VomuleBox/HBoxContainer"]
+[node name="MusicVolumeValueLabel" type="Label" parent="Options/MusicVomuleBox/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "1"
 label_settings = SubResource("LabelSettings_j78aw")
 
-[node name="VolumeScrollBar" type="HScrollBar" parent="Options/VomuleBox"]
+[node name="MusicVolumeScrollBar" type="HScrollBar" parent="Options/MusicVomuleBox"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 50.0
+rounded = true
+
+[node name="SFXVomuleBox" type="VBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/SFXVomuleBox"]
+layout_mode = 2
+
+[node name="SFXVolumeLabel" type="Label" parent="Options/SFXVomuleBox/HBoxContainer"]
+layout_mode = 2
+text = "SFX"
+label_settings = SubResource("LabelSettings_j78aw")
+
+[node name="SFXVolumeValueLabel" type="Label" parent="Options/SFXVomuleBox/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_j78aw")
+
+[node name="SFXVolumeScrollBar" type="HScrollBar" parent="Options/SFXVomuleBox"]
 unique_name_in_owner = true
 layout_mode = 2
 value = 50.0
@@ -103,17 +127,6 @@ size_flags_horizontal = 10
 text = "1"
 label_settings = SubResource("LabelSettings_j78aw")
 
-[node name="TextureRect" type="TextureRect" parent="Options/DifficultyBox/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = ExtResource("2_p28av")
-expand_mode = 1
-flip_h = true
-
 [node name="DifficultyScrollBar" type="HScrollBar" parent="Options/DifficultyBox"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -128,6 +141,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Back to menu"
 
-[connection signal="value_changed" from="Options/VomuleBox/VolumeScrollBar" to="." method="_on_volume_scroll_bar_value_changed"]
+[connection signal="toggled" from="Options/MuteBox/MuteCheckButton" to="." method="_on_mute_check_button_toggled"]
+[connection signal="value_changed" from="Options/MusicVomuleBox/MusicVolumeScrollBar" to="." method="_on_music_volume_scroll_bar_value_changed"]
+[connection signal="value_changed" from="Options/SFXVomuleBox/SFXVolumeScrollBar" to="." method="_on_sfx_volume_scroll_bar_value_changed"]
 [connection signal="value_changed" from="Options/DifficultyBox/DifficultyScrollBar" to="." method="_on_difficulty_scroll_bar_value_changed"]
 [connection signal="pressed" from="Options/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
