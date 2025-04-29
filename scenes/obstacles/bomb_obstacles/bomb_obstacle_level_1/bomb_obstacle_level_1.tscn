@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuxsj122jr283"]
+
+[ext_resource type="PackedScene" uid="uid://6rfd70iqf1jf" path="res://scenes/obstacles/bomb_obstacles/bomb_obstacle/bomb_obstacle.tscn" id="1_bs3i6"]
+
+[node name="BombObstacleLevel1" instance=ExtResource("1_bs3i6")]
+explosion_distance = 1000.0
+difficult_level = 3
+speed = 300.0

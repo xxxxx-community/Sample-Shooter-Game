@@ -35,11 +35,16 @@ var is_game_over: bool = false:
 		is_game_over = value
 		if value:
 			game_over.emit()
+		else:
+			score = 0
 
 class Groups:
 	static var BULLET = "bullet"
 	static var OBSTACLE = "obstacle"
 	static var GAME_OVER_AREA = "game_over_area"
+	static var HEALTH_REPLENISH_OBSTACLE = "health_replenish_obstacle"
+	static var BOMB_OBSTACLE = "bomb_obstacle"
+	static var GOLD_OBSTACLE = "gold_obstacle"
 
 func _process(_delta):
 	if Input.is_action_just_pressed("mute"):

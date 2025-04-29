@@ -33,6 +33,9 @@ project/assembly_name="Новый игровой проект"
 missle=""
 obstacle=""
 game_over_area=""
+health_replenish_obstacle=""
+bomb_obstacle=""
+gold_obstacle=""
 
 [input]
 

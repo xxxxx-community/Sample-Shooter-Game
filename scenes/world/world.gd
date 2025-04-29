@@ -4,6 +4,8 @@ class_name World extends Node2D
 @onready var game_over_box: VBoxContainer = %GameOverBox
 @onready var paused_box: VBoxContainer = %PausedBox
 @onready var score_label: Label = %ScoreLabel
+@onready var health_label: Label = %HealthLabel
+@onready var obstacle_spawner: ObstacleSpawner = $ObstaclesSpawner
 
 @export var bullets_node_container: Node2D
 
@@ -17,6 +19,8 @@ func _ready() -> void:
 	GlobalVars.paused.connect(func (): paused_box.visible = true)
 	GlobalVars.resume.connect(func (): paused_box.visible = false)
 	GlobalVars.score_changed.connect(func (value): score_label.text = str(value))
+	GlobalVars.player.health_reduced.connect(func (old_heath: int, new_health: int): health_label.text = str(new_health))
+	health_label.text = str(GlobalVars.player.health)
 
 
 func _process(_delta):

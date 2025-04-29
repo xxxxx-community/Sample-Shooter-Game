@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvewyct7l0t6"]
+
+[ext_resource type="PackedScene" uid="uid://dp8mar3vmraqj" path="res://scenes/obstacles/obstacle/obstacle.tscn" id="1_ck08k"]
+[ext_resource type="Script" uid="uid://ceiopphuij53i" path="res://scenes/obstacles/health_replenish_obstacles/health_replenish_obstacle/health_replenish_obstacle.gd" id="2_b51yn"]
+[ext_resource type="Texture2D" uid="uid://b0oub8ynj40nd" path="res://assets/1337-gigachad.png" id="3_ivhsr"]
+[ext_resource type="Shape2D" uid="uid://bjpomgq2ywdw" path="res://scenes/obstacles/obstacle/base_shape.tres" id="4_hrsro"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hrsro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ivhsr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HealthReplenishObstacle" groups=["health_replenish_obstacle"] instance=ExtResource("1_ck08k")]
+script = ExtResource("2_b51yn")
+recoverable_health = 0
+speed = 300.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.16402, 0.16402)
+sprite_frames = SubResource("SpriteFrames_hrsro")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = ExtResource("4_hrsro")

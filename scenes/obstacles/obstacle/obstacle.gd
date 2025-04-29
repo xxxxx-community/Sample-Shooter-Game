@@ -5,6 +5,7 @@ class_name Obstacle extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var health_label: Label = $HealthLabel
 
+@export var difficult_level: int = 1
 @export_category("Health")
 @export var max_health: int = 1
 @export var health: int = 1:
@@ -29,12 +30,13 @@ signal health_changed(old_health: int, new_health: int)
 signal destroyed()
 
 func _ready():
-	health = clamp(health, 0, max_health)
+	health = clamp(health, 1, max_health)
 	move_direction = move_direction.normalized() if not move_direction.is_normalized() else move_direction
 	GlobalVars.paused.connect(func (): animation_player.pause())
 	GlobalVars.resume.connect(func (): animation_player.play())
 	GlobalVars.game_over.connect(func (): animation_player.stop())
-	animation_player.play("idle")
+	if animation_player.has_animation("idle"):
+		animation_player.play("idle")
 
 
 func _process(_delta):

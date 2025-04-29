@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5gppl3wql7im"]
+
+[ext_resource type="PackedScene" uid="uid://dvewyct7l0t6" path="res://scenes/obstacles/health_replenish_obstacles/health_replenish_obstacle/health_replenish_obstacle.tscn" id="1_2e2fw"]
+
+[node name="HealthReplenishObstacleLevel1" instance=ExtResource("1_2e2fw")]
+recoverable_health = 1

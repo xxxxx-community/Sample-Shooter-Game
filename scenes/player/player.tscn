@@ -6,6 +6,8 @@
 [node name="Player" type="Node2D" node_paths=PackedStringArray("weapons_node_container")]
 script = ExtResource("1_8afob")
 weapons_node_container = NodePath("WeaponsContainer")
+health = 3
+max_health = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 

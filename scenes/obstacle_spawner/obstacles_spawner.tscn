@@ -1,0 +1,30 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7j0w2hnrwh1r"]
+
+[ext_resource type="Script" uid="uid://vrvj2g630yqr" path="res://scenes/obstacle_spawner/obstacles_spawner.gd" id="1_4ulby"]
+[ext_resource type="PackedScene" uid="uid://dtkghjmi5dtfn" path="res://scenes/obstacles/obstacle_level_1/obstacle_level_1.tscn" id="2_8yy2l"]
+[ext_resource type="PackedScene" uid="uid://c444716cf3uqg" path="res://scenes/obstacles/obstacle_level_2/obstacle_level_2.tscn" id="3_2xdm3"]
+[ext_resource type="PackedScene" uid="uid://dtjr54rk55lvc" path="res://scenes/obstacles/obstacle_level_3/obstacle_level_3.tscn" id="4_gvylp"]
+[ext_resource type="PackedScene" uid="uid://b6bgbdac0n8gl" path="res://scenes/obstacles/obstacle_level_4/obstacle_level_4.tscn" id="5_yt60l"]
+[ext_resource type="PackedScene" uid="uid://dg8uwvvw7gtph" path="res://scenes/obstacles/obstacle_level_5/obstacle_level_5.tscn" id="6_uoh77"]
+[ext_resource type="PackedScene" uid="uid://b5gppl3wql7im" path="res://scenes/obstacles/health_replenish_obstacles/health_replenish_obstacle_level_1/health_replenish_obstacle_level_1.tscn" id="7_2xdm3"]
+[ext_resource type="PackedScene" uid="uid://cuxsj122jr283" path="res://scenes/obstacles/bomb_obstacles/bomb_obstacle_level_1/bomb_obstacle_level_1.tscn" id="8_gvylp"]
+[ext_resource type="PackedScene" uid="uid://bp27hmk2eoci" path="res://scenes/obstacles/gold_obstacles/gold_obstacle/gold_obstacle.tscn" id="9_yt60l"]
+
+[node name="ObstaclesSpawner" type="Node"]
+script = ExtResource("1_4ulby")
+spawn_delay = 1.0
+obstacles = Dictionary[int, PackedScene]({
+1: ExtResource("2_8yy2l"),
+2: ExtResource("3_2xdm3"),
+3: ExtResource("4_gvylp"),
+4: ExtResource("5_yt60l"),
+5: ExtResource("6_uoh77"),
+6: ExtResource("7_2xdm3"),
+7: ExtResource("8_gvylp"),
+8: ExtResource("9_yt60l")
+})
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

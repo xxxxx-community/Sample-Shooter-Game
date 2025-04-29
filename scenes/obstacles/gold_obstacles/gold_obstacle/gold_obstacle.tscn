@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp27hmk2eoci"]
+
+[ext_resource type="PackedScene" uid="uid://dp8mar3vmraqj" path="res://scenes/obstacles/obstacle/obstacle.tscn" id="1_70sl4"]
+[ext_resource type="Script" uid="uid://by2cscuhdbgo5" path="res://scenes/obstacles/gold_obstacles/gold_obstacle/gold_obstacle.gd" id="2_6ik3o"]
+[ext_resource type="Shape2D" uid="uid://bjpomgq2ywdw" path="res://scenes/obstacles/obstacle/base_shape.tres" id="3_ufsmp"]
+
+[node name="GoldObstacle" groups=["gold_obstacle"] instance=ExtResource("1_70sl4")]
+script = ExtResource("2_6ik3o")
+cost = 10
+difficult_level = 3
+max_health = 5
+health = 5
+speed = 200.0
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = ExtResource("3_ufsmp")
+debug_color = Color(0.661128, 0.514077, 0, 0.42)

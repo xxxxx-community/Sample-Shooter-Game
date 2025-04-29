@@ -1,44 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://p4om37dltjcv"]
+[gd_scene load_steps=12 format=3 uid="uid://p4om37dltjcv"]
 
 [ext_resource type="Script" uid="uid://caggyoi1efkb4" path="res://scenes/world/world.gd" id="1_6m72w"]
 [ext_resource type="PackedScene" uid="uid://cbyxwtjoly8ei" path="res://scenes/game_over_area/game_over_area.tscn" id="1_dphjl"]
-[ext_resource type="PackedScene" uid="uid://cpdfwcdf3id5i" path="res://scenes/obstacle_spawner/obstacle_spawner.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://bb2exhf3j0t0i" path="res://scenes/player/player.tscn" id="2_v5dby"]
+[ext_resource type="PackedScene" uid="uid://c7j0w2hnrwh1r" path="res://scenes/obstacle_spawner/obstacles_spawner.tscn" id="4_6m72w"]
 
 [sub_resource type="Animation" id="Animation_6m72w"]
 length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ObstacleSpawner:obstacle_spawn_delay")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 
 [sub_resource type="Animation" id="Animation_1fp7r"]
 resource_name = "obstacle_spawn_rate"
 length = 100.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ObstacleSpawner:obstacle_spawn_delay")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(4, -0.25, 0, 0.25, 0, 0.6, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 100)
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6m72w"]
 _data = {
 &"RESET": SubResource("Animation_6m72w"),
 &"obstacle_spawn_rate": SubResource("Animation_1fp7r")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_bq33v"]
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_t5ptc"]
 font_size = 32
@@ -62,9 +43,10 @@ position = Vector2(0, 452)
 position = Vector2(0, 435)
 scale = Vector2(1.00283, 14.8287)
 
-[node name="ObstacleSpawner" parent="." node_paths=PackedStringArray("obstacles_node_container", "markers_node_container") instance=ExtResource("2_1fp7r")]
+[node name="ObstaclesSpawner" parent="." node_paths=PackedStringArray("obstacles_node_container", "markers_node_container") instance=ExtResource("4_6m72w")]
 obstacles_node_container = NodePath("../ObstaclesContainer")
 markers_node_container = NodePath("../ObstaclesSpawnMarkers")
+spawn_delay = 1.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -98,17 +80,29 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ScoreLabel" type="Label" parent="Control"]
-unique_name_in_owner = true
+[node name="LabelsBox" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -91.5
-offset_top = -394.0
-offset_right = 91.5
-offset_bottom = -349.0
+offset_left = -20.0
+offset_top = -447.0
+offset_right = 20.0
+offset_bottom = -402.0
 grow_horizontal = 2
+
+[node name="HealthLabel" type="Label" parent="Control/LabelsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "3"
+label_settings = SubResource("LabelSettings_bq33v")
+
+[node name="ScoreLabel" type="Label" parent="Control/LabelsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
 text = "0"
 label_settings = SubResource("LabelSettings_t5ptc")
 horizontal_alignment = 1
