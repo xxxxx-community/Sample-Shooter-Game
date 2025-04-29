@@ -4,9 +4,10 @@
 [ext_resource type="Shape2D" uid="uid://bjpomgq2ywdw" path="res://scenes/obstacles/obstacle/base_shape.tres" id="2_qdqjs"]
 
 [node name="ObstacleLevel2" instance=ExtResource("1_y34fq")]
+difficult_level = 2
 max_health = 2
 health = 2
-speed = 250.0
+speed = 150.0
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = ExtResource("2_qdqjs")

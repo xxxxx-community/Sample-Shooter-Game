@@ -4,6 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://bjpomgq2ywdw" path="res://scenes/obstacles/obstacle/base_shape.tres" id="2_pfrc3"]
 
 [node name="ObstacleLevel5" instance=ExtResource("1_g77ik")]
+difficult_level = 5
 max_health = 5
 health = 5
 speed = 100.0
